@@ -1,10 +1,15 @@
 <?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 
 $nombre = "Santiago Ferreyra";
 $edad = 25;
 $aPeliculas = array("Volver al futuro", "Titanic", "El dia después de mañana");
-//print_r
+//print_r 
 //var_dan
 
 ?>
