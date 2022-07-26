@@ -1,195 +1,161 @@
 <?php
+
+
+
 $aPilotos = array();
 $aPilotos[] = array(
-    "name" => "Lewis Hamilton"
+    "name" => "Hamilton"
 );
 $aPilotos[] = array(
-    "name" => "George Russell"
+    "name" => "Russell"
 );
 $aPilotos[] = array(
-    "name" => "Carlos Sainz"
+    "name" => "Sainz"
 );
 $aPilotos[] = array(
-    "name" => "Charles Leclerc"
+    "name" => "Leclerc"
 );
 $aPilotos[] = array(
-    "name" => "Fernando Alonso"
+    "name" => "Alonso"
 );
 $aPilotos[] = array(
-    "name" => "Esteban Ocon"
+    "name" => "Ocon"
 );
 $aPilotos[] = array(
-    "name" => "Max Verstappen"
+    "name" => "Verstappen"
 );
 $aPilotos[] = array(
-    "name" => "Sergio Perez"
+    "name" => "Perez"
 );
 $aPilotos[] = array(
-    "name" => "Lando Norris"
+    "name" => "Norris"
 );
 $aPilotos[] = array(
-    "name" => "Daniel Ricciardo"
+    "name" => "Ricciardo"
 );
 $aPilotos[] = array(
-    "name" => "Valtteri Bottas"
+    "name" => " Bottas"
 );
 $aPilotos[] = array(
-    "name" => "Zhou Guanyu"
+    "name" => "Zhou"
 );
 $aPilotos[] = array(
-    "name" => "Alexander Albon"
+    "name" => "Albon"
 );
 $aPilotos[] = array(
-    "name" => "Nicholas Latifi"
+    "name" => "Latifi"
 );
 $aPilotos[] = array(
-    "name" => "Lance Stroll"
+    "name" => "Stroll"
 );
 $aPilotos[] = array(
-    "name" => "Sebastian Vettel"
+    "name" => "Vettel"
 );
 $aPilotos[] = array(
-    "name" => "Pierre Gasly"
+    "name" => "Gasly"
 );
 $aPilotos[] = array(
-    "name" => "Yuki Tsunoda"
+    "name" => "Tsunoda"
 );
 $aPilotos[] = array(
-    "name" => "Michael Shumacher"
+    "name" => "Shumacher"
 );
 $aPilotos[] = array(
-    "name" => "Kevin Magnussen"
+    "name" => "Magnussen"
 );
+
 
 $aJugadores = array();
+
 $aJugadores[] = array(
-    "nombre" => "Facu",
-    "pole" => "",
-    "position1" => "",
-    "position2" => "",
-    "position3" => "",
-    "position4" => "",
-    "position5" => "",
-    "position6" => "",
-    "position7" => "",
-    "position8" => "",
-    "position9" => "",
-    "position10" => "",
-    "vueltaRapida" => "",
+    "nombre" => "Facu"
+);
+$aJugadores[] = array(
+    "nombre" => "Matu"
+);
+$aJugadores[] = array(
+    "nombre" => "Juani"
+);
+$aJugadores[] = array(
+    "nombre" => "Cabe"
 
 );
 $aJugadores[] = array(
-    "nombre" => "Matu",
-    "pole" => "",
-    "position1" => "",
-    "position2" => "",
-    "position3" => "",
-    "position4" => "",
-    "position5" => "",
-    "position6" => "",
-    "position7" => "",
-    "position8" => "",
-    "position9" => "",
-    "position10" => "",
-    "vueltaRapida" => "",
+    "nombre" => "Lore"
+);
+$aJugadores[] = array(
+    "nombre" => "Brarda"
 
 );
 $aJugadores[] = array(
-    "nombre" => "Juani",
-    "pole" => "",
-    "position1" => "",
-    "position2" => "",
-    "position3" => "",
-    "position4" => "",
-    "position5" => "",
-    "position6" => "",
-    "position7" => "",
-    "position8" => "",
-    "position9" => "",
-    "position10" => "",
-    "vueltaRapida" => "",
-
+    "nombre" => "Pepe"
 );
 $aJugadores[] = array(
-    "nombre" => "Cabe",
-    "pole" => "",
-    "position1" => "",
-    "position2" => "",
-    "position3" => "",
-    "position4" => "",
-    "position5" => "",
-    "position6" => "",
-    "position7" => "",
-    "position8" => "",
-    "position9" => "",
-    "position10" => "",
-    "vueltaRapida" => "",
-
+    "nombre" => "Tin"
 );
-$aJugadores[] = array(
-    "nombre" => "Lore",
-    "pole" => "",
-    "position1" => "",
-    "position2" => "",
-    "position3" => "",
-    "position4" => "",
-    "position5" => "",
-    "position6" => "",
-    "position7" => "",
-    "position8" => "",
-    "position9" => "",
-    "position10" => "",
-    "vueltaRapida" => "",
+session_start();
 
-);
-$aJugadores[] = array(
-    "nombre" => "Brarda",
-    "pole" => "",
-    "position1" => "",
-    "position2" => "",
-    "position3" => "",
-    "position4" => "",
-    "position5" => "",
-    "position6" => "",
-    "position7" => "",
-    "position8" => "",
-    "position9" => "",
-    "position10" => "",
-    "vueltaRapida" => "",
+if (isset($_SESSION["resultadoProde"])) {
+    //Si existe la variable de session listadoClientes asigno su contenido a aClientes
+    $aResultados = $_SESSION["resultadoProde"];
+} else {
+    $aResultados = array();
+};
 
-);
-$aJugadores[] = array(
-    "nombre" => "Pepe",
-    "pole" => "",
-    "position1" => "",
-    "position2" => "",
-    "position3" => "",
-    "position4" => "",
-    "position5" => "",
-    "position6" => "",
-    "position7" => "",
-    "position8" => "",
-    "position9" => "",
-    "position10" => "",
-    "vueltaRapida" => "",
+if ($_POST) {
+    //Asignamos en variables los datos que vienen del formulario
 
-);
-$aJugadores[] = array(
-    "nombre" => "Tin",
-    "pole" => "",
-    "position1" => "",
-    "position2" => "",
-    "position3" => "",
-    "position4" => "",
-    "position5" => "",
-    "position6" => "",
-    "position7" => "",
-    "position8" => "",
-    "position9" => "",
-    "position10" => "",
-    "vueltaRapida" => "",
 
-);
+    $nombre = $_REQUEST["txtNombre"];
+    $pole = $_REQUEST["txtPole"];
+    $posicion1 = $_REQUEST["txtPosicion"][0];
+    $posicion2 = $_REQUEST["txtPosicion"][1];
+    $posicion3 = $_REQUEST["txtPosicion"][2];
+    $posicion4 = $_REQUEST["txtPosicion"][3];
+    $posicion5 = $_REQUEST["txtPosicion"][4];
+    $posicion6 = $_REQUEST["txtPosicion"][5];
+    $posicion7 = $_REQUEST["txtPosicion"][6];
+    $posicion8 = $_REQUEST["txtPosicion"][7];
+    $posicion9 = $_REQUEST["txtPosicion"][8];
+    $posicion10 = $_REQUEST["txtPosicion"][9];
+    $vueltaRapida = $_REQUEST["txtVr"];
+
+    //creamos un array que contendrá el listado de clientes
+    $aResultados[] = array(
+        "nombre" => "<b>$nombre</b>",
+        "pole" => $pole,
+        "posicion1" => $posicion1,
+        "posicion2" => $posicion2,
+        "posicion3" => $posicion3,
+        "posicion4" => $posicion4,
+        "posicion5" => $posicion5,
+        "posicion6" => $posicion6,
+        "posicion7" => $posicion7,
+        "posicion8" => $posicion8,
+        "posicion9" => $posicion9,
+        "posicion10" => $posicion10,
+        "vueltaRapida" => $vueltaRapida
+    );
+
+    $_SESSION["resultadoProde"] = $aResultados;
+};
+$aPosiciones= array();
+$aPosiciones[]= array(
+    "poleman" => $aPilotos[0],
+    "p1" => $aPilotos[1],
+    "p2" => $aPilotos[2],
+    "p3" => $aPilotos[3],
+    "p4" => $aPilotos[4],
+    "p5" => $aPilotos[5],
+    "p6" => $aPilotos[6],
+    "p7" => $aPilotos[9],
+    "p8" => $aPilotos[2],
+    "p9" => $aPilotos[2],
+    "p10" => $aPilotos[1],
+    "vueltaRapi" => $aPilotos[2]
+    )
+
+/* Resumir pilotos y nombres unidad 3 diapositiva 62 */
 
 ?>
 <!DOCTYPE html>
@@ -207,8 +173,8 @@ $aJugadores[] = array(
     <main class="container py-2">
 
         <div class="row">
-            <div class="col-4 bg-light mt-5">
-                <form action="resultado_prode.php" method="POST">
+            <div class="col-2 bg-light mt-5">
+                <form method="POST">
                     <div class="mt-2 pb-2">
                         <label for="">Nombre</label>
                         <select name="txtNombre" class="form-select" aria-label="Default select example py-3">
@@ -234,9 +200,8 @@ $aJugadores[] = array(
                             <label for=""><?php echo "Posición " . $i + 1; ?>
                             </label>
 
-                            <select  name="txtPosicion[]" class="form-select" >
+                            <select name="txtPosicion[]" class="form-select">
                                 <option disabled selected>Elegí un piloto</option>
-
                                 <?php foreach ($aPilotos as $piloto) { ?>
                                     <option value="<?php echo $piloto["name"]; ?>"><?php echo $piloto["name"]; ?></option>
                                 <?php } ?>
@@ -253,27 +218,62 @@ $aJugadores[] = array(
                             <?php } ?>
                         </select>
                     </div>
-                    <div class="my-5 py-2">
-                        <button type="submit" class="float-end btn btn-primary">Enviar</button>
+                    <div class=" py-2">
+                        <button type="submit" class="max-widht float-end mb-5 btn btn-primary">Enviar</button>
                     </div>
                 </form>
             </div>
-            <div class="col-6">
-                <h1 class="float-end mt-5 p-4 bg-light rounded-pill position-fixed start-50">PRODE FORMULA 1</h1>
-                <img src="descarga.png" alt="" class="w-25 position-fixed top-50 start-50">
+
+
+            <div class="col-10 px-5 text-center ">
+                <div Class="p-2 text-center  ">
+                    <h1 class="py-5">Resultados</h1>
+                </div>
+                <table class="table table-hover border shadow ">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Pole</th>
+                            <th> 1</th>
+                            <th> 2</th>
+                            <th> 3</th>
+                            <th> 4</th>
+                            <th> 5</th>
+                            <th> 6</th>
+                            <th> 7</th>
+                            <th> 8</th>
+                            <th> 9</th>
+                            <th> 10</th>
+                            <th>Vuelta Rápida</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($aResultados as $resultado) { ?>
+                            <tr>
+                                <td><?php echo $resultado["nombre"] ?></td>
+                                <td><?php echo $resultado["pole"] ?></td>
+                                <td><?php echo $resultado["posicion1"] ?></td>
+                                <td><?php echo $resultado["posicion2"] ?></td>
+                                <td><?php echo $resultado["posicion3"] ?></td>
+                                <td><?php echo $resultado["posicion4"] ?></td>
+                                <td><?php echo $resultado["posicion5"] ?></td>
+                                <td><?php echo $resultado["posicion6"] ?></td>
+                                <td><?php echo $resultado["posicion7"] ?></td>
+                                <td><?php echo $resultado["posicion8"] ?></td>
+                                <td><?php echo $resultado["posicion9"] ?></td>
+                                <td><?php echo $resultado["posicion10"] ?></td>
+                                <td><?php echo $resultado["vueltaRapida"] ?></td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+                
             </div>
         </div>
-
-
-
+        </div>
     </main>
 
 </body>
 
 </html>
 
-<!-- 
-
-No puedo enviar los resultados de todas las options de las posiciones y no se ve la imagen
-
- -->
