@@ -155,6 +155,7 @@ $aPosiciones[]= array(
     "vueltaRapi" => $aPilotos[2]
     )
 
+
 /* Resumir pilotos y nombres unidad 3 diapositiva 62 */
 
 ?>
