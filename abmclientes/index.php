@@ -2,40 +2,76 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-//preguntar si existe el archivo
 
+//preguntar si existe el archivo
 if (file_exists("archivo.txt")) {
     //Vamos a leerlo y lo almacenamos en jsonClientes
-    $jsonClientes = file_get_contents("archivo.txt",);
+    $jsonClientes = file_get_contents("archivo.txt");
 
     //Convertir jsonClientes a un array llamado a Clientes
-    json_decode($jsonClientes, true);
+    $aClientes = json_decode($jsonClientes, true);
 } else {
     //Si no existe el archivo
     //creamos un aClientes inicializado como un array vacio
     $aClientes = array();
 }
 
+$pos = isset($_GET["pos"]) && $_GET["pos"] >= 0 ? $_GET["pos"] : "";
 
 if ($_POST) {
+
     $documento = trim($_POST["txtDni"]);
     $nombre = trim($_POST["txtNombre"]);
     $telefono = trim($_POST["txtTelefono"]);
     $correo = trim($_POST["txtCorreo"]);
+    $nombreImagen = "";
 
-    $aClientes[] = array(
-        "documento" => $documento,
-        "nombre" => $nombre,
-        "telefono" => $telefono,
-        "correo" => $correo
-    );
-
-    //Convertir el array de clientes a jsonCLientes
+    if ($pos >= 0) {
+        //actualizar
+        $aClientes[$pos] = array(
+            "documento" => $documento,
+            "nombre" => $nombre,
+            "telefono" => $telefono,
+            "correo" => $correo,
+            "imagen" => $nombreImagen
+        );
+    } else {
+        $nombreAleatorio = date("Ymdhmsi");
+        $archivo_tmp = $_FILES["archivo"]["tmp_name"];
+        $extension = pathinfo($_FILES["archivo"]["name"], PATHINFO_EXTENSION);
+        if ($extension == "jpg" || $extension == "jpeg" || $extension == "png") {
+            $nombreImagen = "$nombreAleatorio.$extension";
+            move_uploaded_file($archivo_tmp, "imagenes/$nombreImagen");
+        }
+        //insertar
+        $aClientes[] = array(
+            "documento" => $documento,
+            "nombre" => $nombre,
+            "telefono" => $telefono,
+            "correo" => $correo,
+            "imagen" => $nombreImagen
+        );
+    }
+    //Convertir el array de clientes a jsonClientes
     $jsonClientes = json_encode($aClientes);
 
     //almacenar el string jsonCLientes en el archivo.txt
     file_put_contents("archivo.txt", $jsonClientes);
 }
+
+
+
+if (isset($_GET["do"]) && $_GET["do"] == "eliminar") {
+    //eliminar del array aClientes la posicion a borrar unset()
+    unset($aClientes[$pos]);
+    //convertir el array a json
+    $jsonClientes = json_encode($aClientes);
+    //almacenar el string jsonClientes en el "archivo.txt"
+    file_put_contents("archivo.txt", $jsonClientes);
+    //limpiar la url
+    header("Location: index.php");
+}
+
 
 
 ?>
@@ -63,24 +99,24 @@ if ($_POST) {
                 <form action="" method="POST" class="form" enctype="multipart/form-data">
                     <div class="py-2">
                         <label for="">DNI:*</label>
-                        <input class="form-control" type="text" name="txtDni" id="txtDni">
+                        <input class="form-control" type="text" name="txtDni" id="txtDni" required value="<?php echo isset($aClientes[$pos]) ? $aClientes[$pos]["documento"] : ""; ?>">
                     </div>
                     <div class="py-2">
                         <label for="">Nombre:*</label>
-                        <input class="form-control" type="text" name="txtNombre" id="txtNombre">
+                        <input class="form-control" type="text" name="txtNombre" id="txtNombre" required value="<?php echo isset($aClientes[$pos]) ? $aClientes[$pos]["nombre"] : ""; ?>">
                     </div>
 
                     <div class="py-2">
                         <label for="">Teléfono:*</label>
-                        <input class="form-control" type="text" name="txtTelefono" id="txtTelefono">
+                        <input class="form-control" type="text" name="txtTelefono" id="txtTelefono" required value="<?php echo isset($aClientes[$pos]) ? $aClientes[$pos]["telefono"] : ""; ?>">
                     </div>
                     <div class="py-2">
                         <label for="">Correo:*</label>
-                        <input class="form-control" type="mail" name="txtCorreo" id="txtEdad">
+                        <input class="form-control" type="mail" name="txtCorreo" id="txtEdad" required value="<?php echo isset($aClientes[$pos]) ? $aClientes[$pos]["correo"] : ""; ?>">
                     </div>
                     <div class="py-2">
                         <label for="">Archivo adjunto:</label>
-                        <input class="" type="file" name="archivo1" id="archivo1" accept=".jpg, .jpeg, .png">
+                        <input class="" type="file" name="archivo" id="archivo" accept=".jpg, .jpeg, .png">
                         <small class="d-block">Archivos permitidos: .jpg, .jpeg, .png</small>
                     </div>
                     <div class="py-2 float-end">
@@ -101,16 +137,19 @@ if ($_POST) {
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($aClientes as $cliente) : ?>
+                        <?php foreach ($aClientes as $pos => $cliente) : ?>
                             <tr>
-                                <td></td>
+                                <td><?php if( $cliente["imagen"] != ""): ?>
+                                    <img src="imagenes/<?php echo $cliente["imagen"]; ?>" class="img-thumbnail">
+                                    <?php endif; ?>
+                                </td>
                                 <td><?php echo $cliente["documento"]; ?></td>
                                 <td><?php echo $cliente["nombre"]; ?></td>
                                 <td><?php echo $cliente["correo"]; ?></td>
                                 <td>
-                                    <a href=""><i class="bi bi-pencil-fill"></i></a>
-                                    <a href=""><i class="bi bi-trash-fill"></i></a>
-                                </td> 
+                                    <a href="index.php?pos=<?php echo $pos; ?>&do=editar"><i class="bi bi-pencil-fill"></i></a>
+                                    <a href="index.php?pos=<?php echo $pos; ?>&do=eliminar"><i class="bi bi-trash-fill"></i></a>
+                                </td>
                             </tr>
 
                         <?php endforeach; ?>
