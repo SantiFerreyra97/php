@@ -11,26 +11,6 @@ if (file_exists("invitados.txt")) {
 }
 
 
-if ($_POST) {
-    if (isset($_REQUEST['btnProcesar'])) {
-        $dni = trim($_REQUEST["txtDni"]);
-        if (in_array($dni, $aDocumentos)) {
-
-            $mensaje = "Bienvenido.";
-        } else {
-            $mensaje = "No se encuentra en la lista de invitados.";
-        }
-    } else if (isset($_REQUEST['btnVip'])) {
-        $codigo = trim($_REQUEST['txtCodigo']);
-
-        if ($codigo == "verde") {
-            $mensaje = "Su codigo de acceso es: " . rand(1000, 9999);
-        } else {
-            $mensaje = "Usted no tine pase VIP.";
-        }
-    }
-}
-
 
 
  if ($_POST) {
