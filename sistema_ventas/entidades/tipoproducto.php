@@ -5,9 +5,6 @@ class TipoProducto{
     private $idtipoproducto;
     private $nombre;
 
-    public function __construct()
-    {
-    }
 
     public function __get($atributo)
     {

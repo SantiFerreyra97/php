@@ -1,7 +1,8 @@
 <?php
 include_once("config.php");
-include_once("header.php");
+
 include_once("entidades/tipoproducto.php");
+include_once("entidades/producto.php");
 
 $tipoProducto = new TipoProducto();
 
@@ -16,20 +17,30 @@ if ($_POST) {
             $tipoProducto->cargarFormulario($_REQUEST);
             $tipoProducto->insertar();
             $msg["texto"] = "Insertado correctamente";
-            $msg["codigo"] = "alert-danger";
+            $msg["codigo"] = "alert-succes";
         }
     } else if (isset($_POST["btnBorrar"])) {
         $tipoProducto->cargarFormulario($_REQUEST);
-        $tipoProducto->eliminar();
+        //Busco aquellos productos q tengan este tipo de producto
+        $producto = new Producto();
+        if($producto->obtenerPorTipo($tipoProducto->idtipoproducto)){
+            $msg["texto"] = "No se puede eliminar un tipo de producto con productos asociados";
+            $msg["codigo"] = "alert-danger";
+
+        }else {
+            //sino elimino
+             $tipoProducto->eliminar();
         header("Location: tipoproducto-listado.php");
+        }       
     }
 }
 
 if (isset($_GET["id"]) && $_GET["id"] > 0) {
     $tipoProducto->cargarFormulario($_REQUEST);
     $tipoProducto->obtenerPorId();
-}
+};
 
+include_once("header.php");
 ?>
 
 <div class="container-fluid">
