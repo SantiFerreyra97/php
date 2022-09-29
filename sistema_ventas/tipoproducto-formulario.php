@@ -40,6 +40,7 @@ if (isset($_GET["id"]) && $_GET["id"] > 0) {
     $tipoProducto->obtenerPorId();
 };
 
+$pg = "Formulario de tipo de producto";
 include_once("header.php");
 ?>
 

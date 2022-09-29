@@ -83,6 +83,7 @@ if (isset($_GET["id"]) && $_GET["id"] > 0) {
     $producto->cargarFormulario($_REQUEST);
     $producto->obtenerPorId();
 }
+$pg = "Formulario de Productos";
 
 include_once("header.php");
 ?>

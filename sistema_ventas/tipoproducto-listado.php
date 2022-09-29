@@ -4,9 +4,10 @@ include_once "config.php";
 include_once("header.php");
 include_once("entidades/tipoproducto.php");
 
-$pg = "Listado de Productos";
+$pg = "Listado de tipo de Productos";
 $tipoProductos = new TipoProducto();
 $aTipoProductos = $tipoProductos->obtenerTodos();
+
 
 ?>
 

@@ -4,6 +4,7 @@ include_once "config.php";
 include_once "entidades/cliente.php";
 include_once "entidades/provincia.php";
 include_once "entidades/localidad.php";
+include_once "entidades/venta.php";
 
 $cliente = new Cliente();
 $cliente->cargarFormulario($_REQUEST);
@@ -23,7 +24,7 @@ if ($_POST) {
         $msg["codigo"] = "alert-success";
     } else if (isset($_POST["btnBorrar"])) {
         $venta = new Venta();
-        if ($producto->ObtenerVentasPorCliente($cliente->idcliente)) {
+        if ($venta->ObtenerVentasPorCliente($cliente->idcliente)) {
             $msg["texto"] = "No se puede eliminar un cliente con ventas asociadas.";
             $msg["codigo"] = "alert-danger";
         } else {
@@ -47,6 +48,7 @@ if (isset($_GET["id"]) && $_GET["id"] > 0) {
 $provincia = new Provincia();
 $aProvincias = $provincia->obtenerTodos();
 
+$pg = "Formulario del cliente";
 include_once("header.php");
 ?>
 <!-- Begin Page Content -->

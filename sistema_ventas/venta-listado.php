@@ -7,6 +7,10 @@ $pg = "Listado de ventas";
 $venta = new Venta();
 $aVentas = $venta->cargarGrilla();
 
+
+
+
+
 include_once("header.php");
 ?>
 <!-- Begin Page Content -->

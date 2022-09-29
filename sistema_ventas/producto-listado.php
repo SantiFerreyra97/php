@@ -8,6 +8,9 @@ $pg = "Listado de Productos";
 
 $producto = new Producto();
 $aProductos = $producto->obtenerTodos();
+
+$pg = "Listado de Productos";
+
 include_once("header.php");
 ?>
 

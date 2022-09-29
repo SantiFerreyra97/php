@@ -39,9 +39,7 @@ if (isset($_GET["id"]) && $_GET["id"] > 0) {
     $venta->obtenerPorId();
 };
 
-
-
-
+$pg = "Formulario de ventas";
 include_once("header.php");
 ?>
 
